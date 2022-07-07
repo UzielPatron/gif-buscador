@@ -1,9 +1,17 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { AddCategoria, GIFGrid } from './componentes';
 
 export const GIFBuscadorApp = () => {
     
-    const [categorias, setCategorias] = useState(['']);
+    const [categorias, setCategorias] = useState([]);
+    const [existenCategorias, setExistenCategorias] = useState( false );
+
+    useEffect(()=> {
+        if( categorias.length > 0 && existenCategorias === false ) setExistenCategorias( true );
+        if( categorias.length === 0 && existenCategorias === true ) setExistenCategorias( false );
+    }, [ categorias ])
+
 
     const onAddCategoria = nuevaCategoria => {
         const lowerCase = [];
@@ -30,6 +38,7 @@ export const GIFBuscadorApp = () => {
             <AddCategoria
                 onNuevaCategoria={ onAddCategoria }
                 onEliminarTodo= { onEliminarTodo }
+                existenCategorias={ existenCategorias }
              />
 
             { 

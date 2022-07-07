@@ -9,7 +9,7 @@ const upperCamelCase = palabra => {
     return resultado.toString().replaceAll(',',' ');
 }
 
-export const AddCategoria = ({ onNuevaCategoria, onEliminarTodo }) => {
+export const AddCategoria = ({ onNuevaCategoria, onEliminarTodo, existenCategorias }) => {
     
     const [ inputValue, setInputValue ] = useState('');
 
@@ -38,7 +38,7 @@ export const AddCategoria = ({ onNuevaCategoria, onEliminarTodo }) => {
                     onChange= { onInputChange }
                 />
             </form> 
-            <button onClick={ onEliminarTodo }>Eliminar Todas Las Categorias</button>
+            <button style={{ display: existenCategorias ? '' : 'none'  }} onClick={ onEliminarTodo }>Eliminar Todas Las Categorias</button>
         </div>
     );
 };
